@@ -7,9 +7,9 @@ class SQL:
     def connect_SQL(self):
         try:
             self.conn = mysql.connector.connect(
-                host="localhost",
-                user="root",
-                password="Yeet_mydatabase2"
+                host="-endpoin",
+                user="admin",
+                password="AdMiN321!"
             )
 
             if not self.conn.is_connected():
