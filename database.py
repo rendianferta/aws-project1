@@ -7,7 +7,7 @@ class SQL:
     def connect_SQL(self):
         try:
             self.conn = mysql.connector.connect(
-                host="-endpoin",
+                host="arx-database.cxykes2qiuue.us-east-1.rds.amazonaws.com",
                 user="admin",
                 password="AdMiN321!"
             )
