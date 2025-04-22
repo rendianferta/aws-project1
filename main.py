@@ -85,10 +85,10 @@ def rental_car(car_id):
             car_id = car_id
             user = session.get('user_id')
             sql.book(user, car_id, datetime.date.today(), datetime.date.today() + datetime.timedelta(days=7), selected_car["price"] * 7, "Waiting Approval")
-            flash(f"{selected_car["name"]} rental submission posted, waiting for approval")
+            flash(f"{selected_car['name']} rental submission posted, waiting for approval")
             return redirect(url_for("detail", car_id = car_id))
         else:
-            flash(f"{selected_car["name"]} is already rented")
+            flash(f"{selected_car['name']} is already rented")
             return redirect(url_for("detail", car_id = car_id))
     return "404 error"
 
