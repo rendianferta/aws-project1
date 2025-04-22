@@ -1,0 +1,315 @@
+.custom-alert {
+    background-color: #f8d7da;
+    color: #721c24; 
+    padding: 15px; 
+    border-radius: 5px;
+    border: 1px solid #f5c6cb;
+    width: fit-content; 
+    max-width: 400px;
+    text-align: left;
+    position: fixed;
+    top: 20px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px; 
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #721c24;
+    cursor: pointer;
+    margin-left: auto; 
+}
+
+
+.close-btn:hover {
+    color: black;
+}
+
+html{
+    height: 100%;
+
+}
+
+body{
+    min-height: 100%;
+    display: flex;
+    background-color:  #605e5e;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    flex-direction: column;
+}
+
+
+/* Navbar  */
+
+.NaviBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #222;
+    padding: 15px 20px;
+}
+
+.NaviBar .logo h1 {
+    color: #fff;
+    margin: 0;
+}
+
+.NaviBar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.NaviBar-menu li {
+    margin-left: 20px;
+}
+
+.NaviBar-menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: color 0.3s ease-in-out;
+}
+
+.NaviBar-menu a:hover {
+    color: #f4a261;
+}
+
+
+/* Content */
+.kotaksearch{
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    height: 43px;
+    border-radius: 30px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.search-container input {
+    flex: 1;
+    padding: 0 15px;
+    border: none;
+    outline: none;
+    height: 100%;
+    font-size: 15px;
+    border-radius: 30px;
+    background-color: transparent;
+    color: #333;
+}
+
+.search-container input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+.search-container button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: #f4a261;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.search-container button:hover {
+    background-color: #e76f51;
+    transform: scale(1.05);
+}
+
+.Cars-list{
+    /* border: 1px solid black; */
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: space-between;
+    gap: 20px;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    width: 300px;
+    height: 400px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.card h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.card:hover h4 {
+    color: #e76f51;
+}
+
+.car-pic{
+    /* border: 1px solid black; */
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; 
+}
+
+.car-pic img{
+    width: 300px;
+    height: 200px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    display: block; 
+}
+
+.car-desc {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 400px;
+    font-family: sans-serif;
+}
+
+.info-item {
+    padding: 5px 14px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: #333;
+}
+
+
+.button-select {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+}   
+
+
+.button-select button {
+    border: 1px solid #f4a261;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #f4a261, #e76f51);
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: 
+        background 0.3s ease,
+        transform 0.2s ease,
+        box-shadow 0.3s ease;
+}
+
+/* Efek saat hover */
+.button-select button:hover {
+    transform: scale(1.03);
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #e76f51, #f4a261); /* arah gradient dibalik */
+}
+
+/* Efek saat tombol ditekan */
+.button-select button:active {
+    transform: scale(0.98);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+
+
+.Available{
+    font-size: 15px;
+}
+
+/* Content */
+
+
+
+/* Footer */
+.footer-container {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+}
+
+.footer-content h3 {
+    margin: 0;
+}
+
+.footer-bottom {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+
+
+/* Responsive */
+@media (max-width: 800px) {
+    .NaviBar {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .NaviBar-menu {
+        flex-direction: column;
+    }
+
+    .NaviBar-menu li {
+        margin: 10px 0;
+    }
+}
+
+
+ 
+
+
+
+
+

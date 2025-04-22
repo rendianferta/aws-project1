@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Approval - Admin</title>
+    <link rel="stylesheet" href="../static/Rent_Approval.css">
+</head>
+<body>
+    <header class="NaviBar">
+        <div class="logo">
+            <h1>CarRental</h1>
+        </div>
+        <nav>
+            <ul class="NaviBar-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/explore">Cars</a></li>
+                <li><a href="/account">Account</a></li>
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="/login" class="btn-login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="custom-alert alert-dismissible fade show" role="alert">
+                            <p>{{ message }}</p> 
+                            <button type="button" class="close-btn" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+                        </div>                
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+    <div class="main_container">
+        <div class="container">
+            <h2>Rent Approval</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Member Name</th>
+                        <th>Car Model</th>
+                        <th>Rental Date</th>
+                        <th>Return Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for rental in rentals %}
+                    <tr class="{{rental.status}}">
+                        <td>{{ rental.nama_member }}</td>
+                        <td>{{ rental.model_mobil }}</td>
+                        <td>{{ rental.tanggal_rental }}</td>
+                        <td>{{ rental.tanggal_kembali }}</td>
+                        <td>
+                                <div style="display: flex; gap: 10px;">
+                                <form action="{{ url_for('accept', rental_id=rental.id) }}" method="post">
+                                    <button type="submit" class="approve">Approve</button>
+                                </form>
+                                <form action="{{ url_for('reject', rental_id=rental.id) }}" method="post">
+                                    <button type="submit" class="reject">Reject</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5">No rentals found.</td>
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <footer class="footer-container">
+        <div class="footer-content">
+            <h3>About Us</h3>
+            <p>CarRental is the best solution for renting cars quickly and easily.</p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CarRental. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

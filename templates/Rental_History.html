@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental History - Rental Mobil</title>
+    <link rel="stylesheet" href="../static/Rental_History.css">
+</head>
+<body>
+    <header class="NaviBar">
+        <div class="logo">
+            <h1>CarRental</h1>
+        </div>
+        <nav>
+            <ul class="NaviBar-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/explore">Cars</a></li>
+                <li><a href="/account">Account</a></li>
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="/login" class="btn-login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class = "container">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Member</th>
+                    <th>Model Mobil</th>
+                    <th>Tanggal Rental</th>
+                    <th>Tanggal Kembali</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rental in rentals %}
+                <tr class="{{rental.status}}">
+                    <td>{{ rental.nama_member }}</td>
+                    <td>{{ rental.model_mobil }}</td>
+                    <td>{{ rental.tanggal_rental }}</td>
+                    <td>{{ rental.tanggal_kembali }}</td>
+                    <td>{{ rental.status }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">No rentals found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+    <footer class="footer-container">
+        <div class="footer-content">
+            <h3>About Us</h3>
+            <p>CarRental is the best solution for renting cars quickly and easily.</p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CarRental. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

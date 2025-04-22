@@ -1,0 +1,157 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url('./Images/car_wallpaper2.jpg') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.NaviBar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #222;
+    padding: 15px 20px;
+}
+
+.NaviBar .logo h1 {
+    color: #fff;
+    margin: 0;
+}
+
+.NaviBar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.NaviBar-menu li {
+    margin-left: 20px;
+}
+
+.NaviBar-menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: color 0.3s ease-in-out;
+}
+
+.NaviBar-menu a:hover {
+    color: #f4a261;
+}
+
+.footer-container {
+    width: 100%;
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+}
+
+.footer-content h3 {
+    margin: 0;
+}
+
+.footer-bottom {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.container {
+    margin: 20px auto;
+}
+.login-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    width: 400px;
+    max-width: 90%;
+    overflow: hidden;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+input, select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+button.Login {
+    width: 100%;
+    padding: 10px;
+    background: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button.Login:hover {
+    background: #e68900;
+}
+
+.table-container {
+    max-width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    
+}
+
+table {
+    width: 95%;
+    border-collapse: collapse;
+    background: rgba(163, 154, 154, 0.9);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+th {
+    background-color: #ff9800;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+tr.approved {
+    background-color: #27ed55;
+}
+
+tr.rejected {
+    background-color: #ea2b3b;
+    min-width : 15px; 
+}
+
+tr.completed {
+    background-color: #19b8d4;
+}
+
+a {
+    color: #ff9800;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

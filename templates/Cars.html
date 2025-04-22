@@ -1,0 +1,130 @@
+<html>
+    <head>
+    <title>list-cars</title>    
+    
+    <!-- LINK  -->
+    <link rel="stylesheet" href="../static/cars.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <!-- LINK -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("searchbutton").addEventListener("click", searchbar);
+        });
+        function searchbar(){
+            let userinput = document.getElementById('searchinput').value; 
+
+            fetch('/search', {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: userinput }) 
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text(); // Get the HTML response
+            })
+            .then(html => {
+                // Replace the current page's content with the received HTML
+                document.documentElement.innerHTML = html;
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+                // Handle errors
+            
+            })
+        }
+    </script>
+    </head>
+    <body>
+
+            <header class="NaviBar">
+                <div class="logo">
+                    <h1>CarRental</h1>
+                </div>
+                <nav>
+                    <ul class="NaviBar-menu">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/explore">Cars</a></li>
+                        <li><a href="/account">Account</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                        <li><a href="/login" class="btn-login">Login</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="custom-alert alert-dismissible fade show" role="alert">
+                            <p>{{ message }}</p> 
+                            <button type="button" class="close-btn" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+                        </div>                
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <div class="kotaksearch">
+                <div class="search-container">
+                    <input type="text" placeholder="search" id="searchinput" name="seacrhmobil">
+                    <button id="searchbutton">🔍</button>
+                </div>
+            </div>
+            
+            <!-- LIST SEMUA MOBIL YANG ADA -->
+            <div class="Cars-list">
+                {% for car in cars %}
+                    <div class="card">
+                        <h4>{{ car.name }}</h4>
+            
+                        <div class="car-pic">
+                            <img src="{{ url_for('static', filename='Images/' + car.image + '.jpeg') }}" alt="Car">
+                        </div>
+            
+                        <div class="car-desc">
+                            <div class="info-item">Type Car: <strong>{{ car.type }}</strong></div>
+                            <div class="info-item">Steering: <strong>{{ car.steering }}</strong></div>
+                            <div class="info-item">Capacity: <strong>{{ car.capacity }} Person</strong></div>
+                            <div class="info-item">Avail: <strong>{{ car.status }}</strong></div>
+                        </div>
+
+                        <br>
+            
+                        <div class="button-select">
+                            <form action="{{ url_for('detail', car_id=car.id) }}" method="post">
+                                <button type="submit">Rent Car</button>
+                            </form>
+                        </div>
+            
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- LIST SEMUA MOBIL YANG ADA -->
+
+            <footer class="footer-container">
+                <div class="footer-content">
+                    <h3>About Us</h3>
+                    <p>CarRental is the best solution for renting cars quickly and easily.</p>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 CarRental. All Rights Reserved.</p>
+                </div>
+            </footer>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    document.querySelectorAll(".close-btn").forEach(function (button) {
+                        button.addEventListener("click", function () {
+                            this.parentElement.style.display = "none"; // Hide the alert
+                        });
+                    });
+                });
+            </script>
+
+    </body>
+</html>
+

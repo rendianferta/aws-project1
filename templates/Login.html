@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - Rental Mobil</title>
+    <link rel="stylesheet" href="../static/Login.css">
+
+</head>
+<body>
+
+    <header class="NaviBar">
+        <div class="logo">
+            <h1>CarRental</h1>
+        </div>
+        <nav>
+            <ul class="NaviBar-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/explore">Cars</a></li>
+                <li><a href="/account">History</a></li>
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="/login" class="btn-login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="{{ url_for('login') }}" method="POST">
+            <input name="email" type="email" placeholder="Email" required>
+            <input name="password" type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="custom-alert alert-dismissible fade show" role="alert">
+                        <p>{{ message }}</p> 
+                        <button type="button" class="close-btn" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+                    </div>                
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <p><a href="/register">Register account here</a></p>
+
+    </div>
+
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".close-btn").forEach(function (button) {
+                button.addEventListener("click", function () {
+                    this.parentElement.style.display = "none"; // Hide the alert
+                });
+            });
+        });
+    </script>
+    
+
+
+</body>

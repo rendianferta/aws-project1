@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Member - Rental Mobil</title>
+    <link rel="stylesheet" href="../static/register.css">
+</head>
+
+<body>
+    
+
+    <header class="NaviBar">
+        <div class="logo">
+            <h1>CarRental</h1>
+        </div>
+        <nav>
+            <ul class="NaviBar-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/explore">Cars</a></li>
+                <li><a href="/account">History</a></li>
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="/login" class="btn-login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="kotakregist">
+
+        <div class="register-container">
+            <h2>Daftar Member</h2>
+            <form action="{{ url_for('register') }}" method="POST">
+                <input name="Nama" type="text" placeholder="Nama Lengkap" required>
+                <input name="Email" type="email" placeholder="Email" required>
+                <input name="Password1" type="password" placeholder="Password" required>
+                <input name="Password2" type="password" placeholder="Konfirmasi Password" required>
+                <button type="submit">Daftar</button>
+            </form>
+    
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="custom-alert alert-dismissible fade show" role="alert">
+                            <p>{{ message }}</p> 
+                            <button type="button" class="close-btn" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+                        </div>                
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+    
+            <p>Sudah punya akun? <a href="/login">Login di sini</a></p>
+        </div>
+
+    </div>
+   
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".close-btn").forEach(function (button) {
+                button.addEventListener("click", function () {
+                    this.parentElement.style.display = "none"; // Hide the alert
+                });
+            });
+        });
+    </script>
+</body>
+</html>
