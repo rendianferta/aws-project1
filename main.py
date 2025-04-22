@@ -134,13 +134,13 @@ def account():
 @app.route("/account/accept/<int:rental_id>", methods = ["POST"])
 def accept(rental_id):
     sql.update_status("Booking", rental_id, "status", "Approved")
-    flash(f"Succesfully approved rental request of {sql.select_id(rental_id, "Booking")[0][1]}")
+    flash(f"Succesfully approved rental request of {sql.select_id(rental_id, 'Booking')[0][1]}")
     return redirect(url_for("account" ))
 
 @app.route("/account/reject/<int:rental_id>'", methods = ["POST"])
 def reject(rental_id):
     sql.update_status("Booking", rental_id, "status", "Rejected")
-    flash(f"Succesfully rejected rental request of {sql.select_id(rental_id, "Booking")[0][1]}")
+    flash(f"Succesfully rejected rental request of {sql.select_id(rental_id, 'Booking')[0][1]}")
     return redirect(url_for("account" ))
 
 @app.route("/logout")
@@ -188,7 +188,7 @@ def login():
         if account: 
             if password == account[0]["password"]:
                 session["user_id"] = account[0]["id"]
-                flash(f"Succesfully logged in as {account[0]["nama"]}", category="success")
+                flash(f"Succesfully logged in as {account[0]['nama']}", category="success")
                 return redirect(url_for("explore"))
             else:
                 flash("Incorrect password, try again.", category="error")
