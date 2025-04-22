@@ -4,6 +4,7 @@ import datetime
 
 
 def dictify(data, table):
+    sql = SQL()
     if not data:
         return []
     
@@ -52,6 +53,7 @@ def home():
 
 @app.route("/search", methods = ["GET", "POST"])
 def search():
+    sql = SQL()
     data = request.json
     search_query = data.get("query", "").strip()
     result = sql.search_like(search_query, "name", "Car")
@@ -64,10 +66,12 @@ def search():
 
 @app.route("/explore", methods = ["GET", "POST"])
 def explore():
+    sql = SQL()
     return render_template("Cars.html", cars = dictify(sql.search_all("Car"), "Car"))
 
 @app.route('/rental/<int:car_id>', methods=['GET', 'POST'])
 def rental_car(car_id):
+    sql = SQL()
     
     selected_car = dictify(sql.select_id(car_id, "Car"), "Car")[0]
     print(selected_car)
@@ -94,10 +98,12 @@ def rental_car(car_id):
 
 @app.route('/detail/<int:car_id>', methods=['GET', 'POST'])
 def detail(car_id):
+    sql = SQL()
     return render_template("CarDetail.html", car = dictify(sql.select_id(car_id, "Car"), "Car")[0])
     
 @app.route("/account")
 def account():
+    sql = SQL()
     if "user_id" not in session:
         flash("Login first to check account page")
         return redirect(url_for('explore'))
@@ -133,18 +139,21 @@ def account():
 
 @app.route("/account/accept/<int:rental_id>", methods = ["POST"])
 def accept(rental_id):
+    sql = SQL()
     sql.update_status("Booking", rental_id, "status", "Approved")
     flash(f"Succesfully approved rental request of {sql.select_id(rental_id, 'Booking')[0][1]}")
     return redirect(url_for("account" ))
 
 @app.route("/account/reject/<int:rental_id>'", methods = ["POST"])
 def reject(rental_id):
+    sql = SQL()
     sql.update_status("Booking", rental_id, "status", "Rejected")
     flash(f"Succesfully rejected rental request of {sql.select_id(rental_id, 'Booking')[0][1]}")
     return redirect(url_for("account" ))
 
 @app.route("/logout")
 def logout():
+    sql = SQL()
     if "user_id" not in session:
         flash("You are not logged in to any account")
         return redirect(url_for("explore"))
@@ -154,6 +163,7 @@ def logout():
 
 @app.route("/register", methods = ['GET', "POST"])
 def register():
+    sql = SQL()
     if request.method == "POST":
         nama = request.form.get("Nama")
         email = request.form.get("Email")
@@ -180,6 +190,7 @@ def register():
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
+    sql = SQL()
     if request.method == "POST":
         email = request.form.get("email")
         password=request.form.get("password")
