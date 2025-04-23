@@ -49,6 +49,7 @@ app.config['SECRET_KEY'] = 'aslkfdjsafasafd'
 
 @app.route("/")
 def home():
+    sql = SQL()
     return render_template("HomePage.html")
 
 @app.route("/search", methods = ["GET", "POST"])
