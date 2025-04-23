@@ -148,7 +148,7 @@ def accept(rental_id):
     flash(f"Succesfully approved rental request of {sql.select_id(rental_id, 'Booking')[0][1]}")
     return redirect(url_for("account" ))
 
-@app.route("/account/reject/<int:rental_id>'", methods = ["POST"])
+@app.route("/account/reject/<int:rental_id>", methods = ["POST"])
 def reject(rental_id):
     sql = SQL()
     sql.update_status("Booking", rental_id, "status", "Rejected")
@@ -213,6 +213,6 @@ def login():
 
 if __name__ == "__main__":
     sql = SQL()
-    app.run(host="0.0.0.0", port=80) 
+    app.run(host="0.0.0.0", port=80, debug=True) 
     session["last_page"] = "HomePage" 
 
