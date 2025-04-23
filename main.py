@@ -68,7 +68,10 @@ def search():
 @app.route("/explore", methods = ["GET", "POST"])
 def explore():
     sql = SQL()
-    return render_template("Cars.html", cars = dictify(sql.search_all("Car"), "Car"))
+    print("Accessing /explore")
+    cars = sql.search_all("Car")
+    print("Cars retrieved:", cars)
+    return render_template("Cars.html", cars=dictify(cars, "Car"))
 
 @app.route('/rental/<int:car_id>', methods=['GET', 'POST'])
 def rental_car(car_id):
